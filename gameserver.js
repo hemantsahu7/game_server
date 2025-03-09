@@ -7,11 +7,11 @@ const app = express();
 const server = http.createServer(app);
 
 // Enable CORS
-app.use(cors({ origin: "https://game-nine-drab.vercel.app/", credentials: true }));
+app.use(cors({ origin: "https://game-nine-drab.vercel.app", credentials: true }));
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // Your frontend URL
+    origin: "https://game-nine-drab.vercel.app", // Your frontend URL
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -78,11 +78,11 @@ import cors from "cors";
 const app = express();
 const server = http.createServer(app);
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "https://game-nine-drab.vercel.app", credentials: true }));
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://game-nine-drab.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
