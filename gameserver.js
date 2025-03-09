@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 
 // Enable CORS
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "https://game-nine-drab.vercel.app/", credentials: true }));
 
 const io = new Server(server, {
   cors: {
