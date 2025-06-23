@@ -1,75 +1,3 @@
-/*import express from "express";
-import http from "http";
-import {Server} from "socket.io";
-import cors from "cors";
-
-const app = express();
-const server = http.createServer(app);
-
-// Enable CORS
-app.use(cors({ origin: "https://game-nine-drab.vercel.app", credentials: true }));
-
-const io = new Server(server, {
-  cors: {
-    origin: "https://game-nine-drab.vercel.app", // Your frontend URL
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
-});
-
-const PORT = 3000;
-
-let players = {};
-
-
-io.on("connection", (socket) => {
-    console.log(`Player connected: ${socket.id}`);
-  
-    // Add the new player to the list of players
-    players[socket.id] = {
-      position: { x: 0, y: 0, z: 0 },
-      rotation: { x: 0, y: 0, z: 0 },
-      animation: "Idle",
-      weapon: "AK",
-    };
-
-    
-  
-    // Send the current players to the newly connected player
-    setTimeout(() => {
-      socket.emit("currentPlayers",{ id:socket.id ,currPlayers:players});
-      console.log("currentPlayers event emitted:", players);
-  }, 1000);
-    
-  
-    // Notify all other players about the new player
-    socket.broadcast.emit("newPlayer", { id: socket.id, state: players[socket.id] });
-  
-    // Update the player's state
-    socket.on("updatePlayer", (state) => {
-        //console.log(players);
-      if (players[socket.id]) {
-        players[socket.id] = { ...players[socket.id], ...state };
-        // Broadcast the update to all other players
-        socket.broadcast.emit("playerUpdated", { id: socket.id, state });
-        
-      }
-    });
-  
-    // Remove the player when they disconnect
-    socket.on("disconnect", () => {
-      console.log(`Player disconnected: ${socket.id}`);
-      delete players[socket.id];
-      io.emit("playerDisconnected", socket.id);
-    });
-  });
-
- 
-  
-  server.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });*/
-
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
@@ -87,8 +15,7 @@ const io = new Server(server, {
     credentials: true,
   },
 });
-
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 let players = {};
 let bullets = [];
 
