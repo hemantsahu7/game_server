@@ -61,14 +61,12 @@ socket.on("removeBullet", (bulletId) => {
 });
 
 socket.on("playerHit", ({ hitPlayerId}) => {
-  if (players[hitPlayerId]) {
-    players[hitPlayerId].animation = "HitReact";
-    players[hitPlayerId].health = players[hitPlayerId].health - 10;
-    io.emit("playerUpdated", { id: hitPlayerId, state: players[hitPlayerId] });
+ 
+    
+    io.emit("animateHit", { id: hitPlayerId });
     // Broadcast the hit animation trigger
   
-    console.log("player is hitted with bullet");
-  }
+  
 });
 
   socket.on("disconnect", () => {
